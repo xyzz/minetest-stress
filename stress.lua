@@ -22,7 +22,7 @@ function Stress.__call(self, something)
     end
 end
 
-Stress.on = function(event, func, name)
+Stress.on = function(self, event, func, name)
     name = name or ""
 
     if stressEvents[event] ~= nil then

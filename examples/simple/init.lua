@@ -5,7 +5,7 @@ _("default:dirt"):on("place", function(me)
 end)
 
 -- turn everything (except default:dirt) into dirt
-_.on("place", function(me)
+_:on("place", function(me)
     me:value("default:dirt")
     me:meta("infotext", "hello, world!")
 end)

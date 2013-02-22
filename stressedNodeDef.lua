@@ -10,7 +10,7 @@ function stressedNodeDef.__call(self, name)
 end
 
 function stressedNodeDef.on(self, event, func)
-    Stress.on(event, func, self.name)
+    Stress:on(event, func, self.name)
 end
 
 stressedNodeDef.__meta = {
