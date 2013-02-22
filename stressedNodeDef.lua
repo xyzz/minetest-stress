@@ -1,19 +1,20 @@
-stressedNodeDef = {}
+stressedNodeDef = { __type = "stressedNodeDef" }
 
 function stressedNodeDef.__call(self, name)
-    self = {}
-    self.name = name
-    setmetatable(self, { __index = stressedNodeDef })
+    assert(type(name) == "string", "name must be of type string")
+    self = {
+        name = name
+    }
+    setmetatable(self, stressedNodeDef.__meta)
     return self
 end
 
 function stressedNodeDef.on(self, event, func)
-    if stressEvents[event] ~= nil then
-        if stressEvents[event][self.name] == nil then
-            stressEvents[event][self.name] = {}
-        end
-        table.insert(stressEvents[event][self.name], func)
-    end
+    Stress.on(event, func, self.name)
 end
+
+stressedNodeDef.__meta = {
+    __index = stressedNodeDef
+}
 
 setmetatable(stressedNodeDef, { __call = stressedNodeDef.__call })

@@ -1,9 +1,11 @@
-stressedNode = {}
+stressedNode = { __type = "stressedNode" }
 
 function stressedNode.__call(self, pos)
-    self = {}
-    self.pos = pos
-    setmetatable(self, { __index = stressedNode })
+    assert(pos.__type == "stressedPosition", "pos must be of type stressedNodePosition")
+    self = {
+        pos = pos
+    }
+    setmetatable(self, stressedNode.__meta)
     return self
 end
 
@@ -14,5 +16,17 @@ function stressedNode.value(self, change)
         minetest.env:set_node(self.pos, {name = change})
     end
 end
+
+function stressedNode.meta(self, name, change)
+    if change == nil then
+        return minetest.env:get_meta(self.pos):get_string(name)
+    else
+        minetest.env:get_meta(self.pos):set_string(name, change)
+    end
+end
+
+stressedNode.__meta = {
+    __index = stressedNode
+}
 
 setmetatable(stressedNode, { __call = stressedNode.__call })
