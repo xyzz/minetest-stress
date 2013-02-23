@@ -9,5 +9,5 @@ _("default:cobble"):on("place", function(me)
 end)
 
 _:on("place", function()
-    _({0,0,0}):value("default:dirt")
+    _({0,0,0}):name("default:dirt")
 end)
