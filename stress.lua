@@ -21,6 +21,9 @@ Stress = {}
 function Stress.__call(self, something)
     if type(something) == "string" then
         return stressedNodeDef(something)
+    elseif stressedPosition.__valid(something) then
+        local pos = stressedPosition(something)
+        return stressedNode(pos)
     end
 end
 

@@ -9,7 +9,7 @@ function stressedNode.__call(self, pos)
     return self
 end
 
-function stressedNode.value(self, change)
+function stressedNode.name(self, change)
     if change == nil then
         return minetest.env:get_node(self.pos).name
     else

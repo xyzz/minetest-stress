@@ -1,6 +1,9 @@
 stressedPosition = { __type = "stressedPosition" }
 
 function stressedPosition.__call(self, something)
+    if something.__type == "stressedPosition" then
+        return something
+    end
     if something.x and something.y and something.z then
         self = {x = something.x,
                 y = something.y,
@@ -10,13 +13,22 @@ function stressedPosition.__call(self, something)
                 y = something[2],
                 z = something[3]}
     end
-    assert(type(self.x) == "number" and type(self.y) == "number" and type(self.z) == "number", "stressedPosition can only accept numbers")
+    assert(stressedPosition.__valid(self))
     setmetatable(self, stressedPosition.__meta)
     return self
 end
 
+function stressedPosition.__valid(a)
+    if a.x and a.y and a.z then
+        return type(a.x) == "number" and type(a.y) == "number" and type(a.z) == "number"
+    else
+        return type(a[1]) == "number" and type(a[2]) == "number" and type(a[3]) == "number"
+    end
+end
+
 function stressedPosition.__add(a, b)
-    assert(a.__type == "stressedPosition" and b.__type == "stressedPosition", "both arguments to add must be of type stressedPosition")
+    sa = stressedPosition(a)
+    sb = stressedPosition(b)
     return stressedPosition({a.x + b.x, a.y + b.y, a.z + b.z})
 end
 
