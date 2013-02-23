@@ -13,6 +13,8 @@ local myPath = minetest.get_modpath(minetest.get_current_modname())
 dofile(myPath .. "/stressedPosition.lua")
 dofile(myPath .. "/stressedNodeDef.lua")
 dofile(myPath .. "/stressedNode.lua")
+dofile(myPath .. "/stressedStack.lua")
+dofile(myPath .. "/stressedInventory.lua")
 
 Stress = {}
 

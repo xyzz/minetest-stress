@@ -25,6 +25,10 @@ function stressedNode.meta(self, name, change)
     end
 end
 
+function stressedNode.inventory(self, name)
+    return stressedInventory(minetest.get_inventory({type="node",pos=self.pos}), name)
+end
+
 stressedNode.__meta = {
     __index = stressedNode
 }
