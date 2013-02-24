@@ -1,5 +1,6 @@
 _("default:dirt"):on("place", function(me)
-    me:value("default:dirt_with_grass")
+    _(me.pos + {0,1,0}):name("default:dirt")
+    me:name("air")
 end)
 
 _("default:cobble"):on("place", function(me)

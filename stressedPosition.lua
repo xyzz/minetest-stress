@@ -29,7 +29,7 @@ end
 function stressedPosition.__add(a, b)
     sa = stressedPosition(a)
     sb = stressedPosition(b)
-    return stressedPosition({a.x + b.x, a.y + b.y, a.z + b.z})
+    return stressedPosition({sa.x + sb.x, sa.y + sb.y, sa.z + sb.z})
 end
 
 function stressedPosition.__eq(a, b)
