@@ -12,3 +12,14 @@ end)
 _:on("place", function()
     _({0,0,0}):name("default:dirt")
 end)
+
+for pos in _:iterate({0, 0, 0}, {1, 1, 1}) do
+    print(dump(node))
+end
+
+_("default:wood"):on("place", function(me)
+    _(me.pos - {1, 1, 1}, me.pos + {1, 1, 1}):name("default:mese")
+    _(me.pos, me.pos + {2, 2, 2}):each(function(node)
+        node:name("air")
+    end)
+end)

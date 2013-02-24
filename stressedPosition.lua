@@ -19,6 +19,9 @@ function stressedPosition.__call(self, something)
 end
 
 function stressedPosition.__valid(a)
+    if type(a) ~= "table" then
+        return false
+    end
     if a.x and a.y and a.z then
         return type(a.x) == "number" and type(a.y) == "number" and type(a.z) == "number"
     else
@@ -32,13 +35,23 @@ function stressedPosition.__add(a, b)
     return stressedPosition({sa.x + sb.x, sa.y + sb.y, sa.z + sb.z})
 end
 
+function stressedPosition.__sub(a, b)
+    return stressedPosition(a) + (-stressedPosition(b))
+end
+
+function stressedPosition.__unm(a)
+    return stressedPosition({-a.x, -a.y, -a.z})
+end
+
 function stressedPosition.__eq(a, b)
     return a.x == b.x and a.y == b.y and a.z == b.z
 end
 
 stressedPosition.__meta = {
     __index = stressedPosition,
+    __unm = stressedPosition.__unm,
     __add = stressedPosition.__add,
+    __sub = stressedPosition.__sub,
     __eq = stressedPosition.__eq
 }
 
