@@ -14,7 +14,7 @@ _:on("place", function()
 end)
 
 for pos in _:iterate({0, 0, 0}, {1, 1, 1}) do
-    print(dump(node))
+    print(dump(pos))
 end
 
 _("default:wood"):on("place", function(me)
