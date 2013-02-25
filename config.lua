@@ -1,0 +1,3 @@
+Stress.config = {
+    debug = false
+}

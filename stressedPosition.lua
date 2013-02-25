@@ -56,3 +56,12 @@ stressedPosition.__meta = {
 }
 
 setmetatable(stressedPosition, { __call = stressedPosition.__call })
+
+function stressedPosition.test()
+    assert_equal(stressedPosition({1, 2, 3}), stressedPosition({x=1,y=2,z=3}))
+    assert_equal(stressedPosition({1, 2, 3}), -stressedPosition({-1, -2, -3}))
+    assert_equal(stressedPosition({1, 2, 3}) + stressedPosition({4, 5, 6}), stressedPosition({5, 7, 9}))
+    assert_equal(stressedPosition({1, 2, 3}) - stressedPosition({3, 2, 1}), stressedPosition({-2, 0, 2}))
+    assert_false(stressedPosition.__valid(nil))
+    assert_true(stressedPosition.__valid({1, 2, 3}))
+end

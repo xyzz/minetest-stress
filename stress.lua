@@ -4,11 +4,20 @@ Stress for Minetest
 
 ]]
 
+Stress = {}
+
 stressEvents = {
     place = {}
 }
 
 local myPath = minetest.get_modpath(minetest.get_current_modname())
+
+dofile(myPath .. "/config.lua")
+
+if Stress.config.debug then
+    print("Stress.config.debug is enabled. *Never* use this in production!")
+    dofile(myPath .. "/tests.lua")
+end
 
 dofile(myPath .. "/stressedPosition.lua")
 dofile(myPath .. "/stressedArea.lua")
@@ -16,8 +25,6 @@ dofile(myPath .. "/stressedNodeDef.lua")
 dofile(myPath .. "/stressedNode.lua")
 dofile(myPath .. "/stressedStack.lua")
 dofile(myPath .. "/stressedInventory.lua")
-
-Stress = {}
 
 function Stress.__call(self, first, second)
     if stressedPosition.__valid(first) and stressedPosition.__valid(second) then
