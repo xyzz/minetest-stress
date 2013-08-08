@@ -33,7 +33,11 @@ local stress_root = minetest.get_modpath(minetest.get_current_modname())
 local function test()
 	package.path = package.path .. ";" .. stress_root .. "/tests/?.lua"
 
+	-- "hack" to make Minetest load some blocks into memory
+	VoxelManip():read_from_map({x=-16, y=-16, z=-16}, {x=15, y=15, z=15})
+
 	lunatest.suite("test_position")
+	lunatest.suite("test_node")
 	lunatest.run()
 
 	minetest.request_shutdown()

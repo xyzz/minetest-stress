@@ -13,6 +13,7 @@ stressEvents = {
 local myPath = minetest.get_modpath(minetest.get_current_modname())
 
 dofile(myPath .. "/config.lua")
+dofile(myPath .. "/config.local.lua")
 
 if Stress.config.debug then
     print("Stress.config.debug is enabled. *Never* use this in production!")

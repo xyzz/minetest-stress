@@ -1,7 +1,7 @@
 local Node = { __type = "Node" }
 
 function Node.__call(self, pos)
-    assert(pos.__type == "stressedPosition", "pos must be of type NodePosition")
+    assert(pos.__type == "Position", "pos must be of type Position")
     self = {
         pos = pos
     }
