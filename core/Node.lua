@@ -1,36 +1,41 @@
-stressedNode = { __type = "stressedNode" }
+local Node = { __type = "Node" }
 
-function stressedNode.__call(self, pos)
-    assert(pos.__type == "stressedPosition", "pos must be of type stressedNodePosition")
+function Node.__call(self, pos)
+    assert(pos.__type == "stressedPosition", "pos must be of type NodePosition")
     self = {
         pos = pos
     }
-    setmetatable(self, stressedNode.__meta)
+    setmetatable(self, Node.__meta)
     return self
 end
 
-function stressedNode.name(self, change)
+function Node.name(self, change)
     if change == nil then
         return minetest.env:get_node(self.pos).name
     else
         minetest.env:set_node(self.pos, {name = change})
+        return self
     end
 end
 
-function stressedNode.meta(self, name, change)
+function Node.meta(self, name, change)
     if change == nil then
         return minetest.env:get_meta(self.pos):get_string(name)
     else
         minetest.env:get_meta(self.pos):set_string(name, change)
+        return self
     end
 end
 
-function stressedNode.inventory(self, name)
+function Node.inventory(self, name)
     return stressedInventory(minetest.get_inventory({type="node",pos=self.pos}), name)
 end
 
-stressedNode.__meta = {
-    __index = stressedNode
+Node.__meta = {
+    __index = Node
 }
 
-setmetatable(stressedNode, { __call = stressedNode.__call })
+setmetatable(Node, { __call = Node.__call })
+
+
+Stress.Node = Node

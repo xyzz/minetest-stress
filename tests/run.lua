@@ -28,8 +28,15 @@ vim luacov.report.out
 require "luacov"
 require "lunatest"
 
-function Stress.test()
-    stressedPosition.test()
+local stress_root = minetest.get_modpath(minetest.get_current_modname())
+
+local function test()
+	package.path = package.path .. ";" .. stress_root .. "/tests/?.lua"
+
+	lunatest.suite("test_position")
+	lunatest.run()
+
+	minetest.request_shutdown()
 end
 
-minetest.after(0, Stress.test)
+minetest.after(0, test)

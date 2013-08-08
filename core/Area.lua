@@ -1,34 +1,40 @@
-stressedArea = { __type = "stressedArea" }
+local Area = { __type = "Area" }
 
-function stressedArea.__call(self, first, second)
+function Area.__call(self, first, second)
     self = {
         first = first,
         second = second
     }
-    setmetatable(self, stressedArea.__meta)
+    setmetatable(self, Area.__meta)
     return self
 end
 
-function stressedArea.name(self, change)
+function Area.name(self, change)
     for pos in Stress:iterate(self.first, self.second) do
         stressedNode(pos):name(change)
     end
+    return self
 end
 
-function stressedArea.meta(self, name, value)
+function Area.meta(self, name, value)
     for pos in Stress:iterate(self.first, self.second) do
         stressedNode(pos):meta(name, value)
     end
+    return self
 end
 
-function stressedArea.each(self, func)
+function Area.each(self, func)
     for pos in Stress:iterate(self.first, self.second) do
         func(stressedNode(pos))
     end
+    return self
 end
 
-stressedArea.__meta = {
-    __index = stressedArea
+Area.__meta = {
+    __index = Area
 }
 
-setmetatable(stressedArea, { __call = stressedArea.__call })
+setmetatable(Area, { __call = Area.__call })
+
+
+Stress.Area = Area
