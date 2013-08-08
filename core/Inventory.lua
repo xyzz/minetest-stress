@@ -1,4 +1,4 @@
-Inventory = { __type = "Inventory" }
+local Inventory = { __type = "Inventory" }
 
 function Inventory.__call(self, invref, list)
     self = {

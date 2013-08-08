@@ -1,4 +1,4 @@
-Stack = { __type = "Stack" }
+local Stack = { __type = "Stack" }
 
 function Stack.__call(self, inventory, number)
     self = {

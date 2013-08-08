@@ -1,4 +1,4 @@
-Position = { __type = "Position" }
+local Position = { __type = "Position" }
 
 function Position.__call(self, something)
     if something.__type == "Position" then
