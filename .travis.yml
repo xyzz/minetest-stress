@@ -1,6 +1,6 @@
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -qq libsqlite3-dev libluajit-5.1-dev
+ - sudo apt-get install -qq libsqlite3-dev libluajit-5.1-dev lua5.1
 script: ./tests/run.sh
 notifications:
   email: false
