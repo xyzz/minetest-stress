@@ -27,6 +27,8 @@ dofile(myPath .. "/core/Node.lua")
 dofile(myPath .. "/core/Stack.lua")
 dofile(myPath .. "/core/Inventory.lua")
 
+dofile(myPath .. "/extra/formspice.lua")
+
 function Stress.__call(self, first, second)
     if Stress.Position.__valid(first) and Stress.Position.__valid(second) then
         return Stress.Area(Stress.Position(first), Stress.Position(second))

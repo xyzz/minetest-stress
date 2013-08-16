@@ -38,6 +38,7 @@ local function test()
 
 	lunatest.suite("test_position")
 	lunatest.suite("test_node")
+	lunatest.suite("test_formspice")
 	lunatest.run()
 
 	minetest.request_shutdown()
